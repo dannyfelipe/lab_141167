@@ -16,10 +16,10 @@ public class Entrega implements Serializable {
 
 	}
 
-
 	public String getComprador() {
 		return comprador;
 	}
+
 	public void setComprador(String comprador) {
 		this.comprador = comprador;
 	}
@@ -27,10 +27,14 @@ public class Entrega implements Serializable {
 	public String getLocal() {
 		return local;
 	}
+
 	public void setLocal(String local) {
 		this.local = local;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Comprador: " + getComprador() + "Local: " + getLocal();
+	}
 
 }

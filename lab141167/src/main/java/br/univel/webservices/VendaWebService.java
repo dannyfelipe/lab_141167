@@ -1,25 +1,12 @@
 package br.univel.webservices;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.math.BigDecimal;
-import java.util.List;
+import java.util.ArrayList;
 
-import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.inject.Inject;
-import javax.jms.Destination;
-import javax.jms.JMSContext;
-import javax.jms.Queue;
-import javax.jms.Topic;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import br.univel.classes.Venda;
 import br.univel.ejb.ProcessVenda;
@@ -27,31 +14,24 @@ import br.univel.ejb.ProcessVenda;
 @WebService
 public class VendaWebService {
 
-	@EJB(name = "processVenda")
-	private ProcessVenda processVenda;
+	@EJB
+	ProcessVenda ProcessVendaEJB;
 
-	@WebMethod(operationName = "venda")
-	@WebResult(name = "resultVenda")
+	@WebMethod(operationName = "vender")
+	@WebResult(name = "status_Venda")
+	public String doGet(@WebParam(name = "num_Nota") int num) {
+		Venda venda = new Venda();
+		venda.setQuantidade(2);
 
-	public String venda(
+		ArrayList<String> produtos = new ArrayList<>();
+		produtos.add("1");
+		produtos.add("2");
 
-			@WebParam(name = "quantidade") Integer quantidade,
-			@WebParam(name = "produtos") List<String> produtos) {
+		venda.setProdutos((java.util.List<String>) produtos);
 
-		try {
+		ProcessVendaEJB.processarVenda(venda);
 
-			Venda venda = new Venda();
-			venda.setQuantidade(quantidade);
-			venda.setProdutos(produtos);
-
-			processVenda.processarVenda(venda);
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-
-		return "Concluído a operação";
-}
+		return "Venda Concluída";
+	}
 
 }

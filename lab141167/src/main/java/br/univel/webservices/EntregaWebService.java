@@ -7,34 +7,24 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 
 import br.univel.classes.Entrega;
-import br.univel.ejb.ProcessEntregaWBS;
+import br.univel.ejb.ProcessEntrega;
 
 @WebService
 public class EntregaWebService {
 
-	@EJB(name = "processEntregaWBS")
+	@EJB
+	ProcessEntrega ProcessEntregaEJB;
 
-	private ProcessEntregaWBS processEntregaWBS;
+	@WebMethod(operationName = "entregar")
+	@WebResult(name = "status_Entrega")
+	public String doGet(@WebParam(name = "endereco_Entrega") String endereco) {
 
-	@WebMethod(operationName = "entrega")
+		Entrega entrega = new Entrega();
+		entrega.setComprador("comprador");
+		entrega.setLocal("local");
 
-	@WebResult(name = "resultEntrega")
-
-	public String entrega(
-
-			@WebParam(name = "comprador") String comprador,
-			@WebParam(name = "local") String local) {
-		try {
-			Entrega entrega = new Entrega();
-			entrega.setComprador(comprador);
-			entrega.setLocal(local);
-
-			processEntregaWBS.processarEntrega(entrega);
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-		return "Concluído a operação";
+		ProcessEntregaEJB.processarEntrega(entrega);
+		return "Entrega enviada";
 }
 
 }

@@ -21,16 +21,9 @@ import br.univel.classes.Venda;
 import br.univel.hibernate.HibernateConfig;
 
 @MessageDriven(name = "MdbContabilidade", activationConfig = {
-	    @ActivationConfigProperty(
-	    		propertyName = "destinationLookup",
-	    		propertyValue = "topic/TOPICVenda"),
-	    @ActivationConfigProperty(
-	    		propertyName = "destinationType",
-	    		propertyValue = "javax.jms.Topic"),
-	    @ActivationConfigProperty(
-	    		propertyName = "acknowledgeMode",
-	    		propertyValue = "Auto-acknowledge")
-	    })
+		@ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "topic/TOPICVenda"),
+		@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic"),
+		@ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge") })
 
 @TransactionManagement(TransactionManagementType.BEAN)
 public class MdbContabilidade implements MessageListener {
@@ -47,7 +40,6 @@ public class MdbContabilidade implements MessageListener {
 
 				Log logg = new Log();
 				logg.setData_time(new Timestamp(Calendar.getInstance().getTimeInMillis()));
-				;
 				logg.setNome_mdb("MdbContabilidade");
 				logg.setMsg(venda.toString());
 
@@ -62,6 +54,6 @@ public class MdbContabilidade implements MessageListener {
 				e.printStackTrace();
 			}
 		}
-}
+	}
 
 }

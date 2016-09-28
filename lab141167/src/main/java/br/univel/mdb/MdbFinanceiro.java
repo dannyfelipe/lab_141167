@@ -21,16 +21,9 @@ import br.univel.classes.Venda;
 import br.univel.hibernate.HibernateConfig;
 
 @MessageDriven(name = "MdbFinanceiro", activationConfig = {
-	    @ActivationConfigProperty(
-	    		propertyName = "destinationLookup",
-	    		propertyValue = "topic/VENDATopic"),
-	    @ActivationConfigProperty(
-	    		propertyName = "destinationType",
-	    		propertyValue = "javax.jms.Topic"),
-	    @ActivationConfigProperty(
-	    		propertyName = "acknowledgeMode",
-	    		propertyValue = "Auto-acknowledge")
-	    })
+		@ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "topic/VENDATopic"),
+		@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic"),
+		@ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge") })
 public class MdbFinanceiro implements MessageListener {
 
 	private final static Logger LOGGER = Logger.getLogger(MdbFinanceiro.class.toString());
@@ -60,6 +53,6 @@ public class MdbFinanceiro implements MessageListener {
 			}
 		}
 
-}
+	}
 
 }

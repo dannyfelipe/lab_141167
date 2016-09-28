@@ -21,16 +21,9 @@ import br.univel.classes.Venda;
 import br.univel.hibernate.HibernateConfig;
 
 @MessageDriven(name = "MdbAuditoria", activationConfig = {
-	    @ActivationConfigProperty(
-	    		propertyName = "destinationLookup",
-	    		propertyValue = "topic/TOPICVenda"),
-	    @ActivationConfigProperty(
-	    		propertyName = "destinationType",
-	    		propertyValue = "javax.jms.Topic"),
-	    @ActivationConfigProperty(
-	    		propertyName = "acknowledgeMode",
-	    		propertyValue = "Auto-acknowledge")
-	    })
+		@ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "topic/TOPICVenda"),
+		@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic"),
+		@ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge") })
 
 @TransactionManagement(TransactionManagementType.BEAN)
 public class MdbAuditoria implements MessageListener {
@@ -46,7 +39,6 @@ public class MdbAuditoria implements MessageListener {
 
 				Log logg = new Log();
 				logg.setData_time(new Timestamp(Calendar.getInstance().getTimeInMillis()));
-				;
 				logg.setNome_mdb("MdbAuditoria");
 				logg.setMsg(venda.toString());
 
@@ -62,6 +54,6 @@ public class MdbAuditoria implements MessageListener {
 			}
 		}
 
-}
+	}
 
 }
