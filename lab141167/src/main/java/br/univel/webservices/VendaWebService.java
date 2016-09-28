@@ -19,7 +19,7 @@ public class VendaWebService {
 
 	@WebMethod(operationName = "vender")
 	@WebResult(name = "status_Venda")
-	public String doGet(@WebParam(name = "num_Nota") int num) {
+	public String doGet(@WebParam(name = "desc_venda") int num) {
 		Venda venda = new Venda();
 		venda.setQuantidade(2);
 

@@ -21,7 +21,7 @@ public class ProcessVenda {
 	private Topic topic;
 
 	public void processarVenda(Venda venda) {
-		System.out.println("Recebendo solicitação!!");
+		System.out.println("Recebendo venda...");
 		final Destination destination = topic;
 
 		try {

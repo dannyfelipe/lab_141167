@@ -21,7 +21,7 @@ public class ProcessEntrega {
 	private Queue queue;
 
 	public void processarEntrega(Entrega entrega) {
-		System.out.println("Recebendo solicitação!!");
+		System.out.println("Recebendo pedido...");
 		final Destination destination = queue;
 
 		try {

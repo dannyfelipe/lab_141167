@@ -17,7 +17,7 @@ public class EntregaWebService {
 
 	@WebMethod(operationName = "entregar")
 	@WebResult(name = "status_Entrega")
-	public String doGet(@WebParam(name = "endereco_Entrega") String endereco) {
+	public String doGet(@WebParam(name = "dados_entrega") String local) {
 
 		Entrega entrega = new Entrega();
 		entrega.setComprador("comprador");
